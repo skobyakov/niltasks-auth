@@ -1,0 +1,11 @@
+server:
+  host: "localhost"
+  port: "8081"
+  debug: true
+
+postgres:
+  user: "postgres"
+  password: "postgres"
+  database: "niltasks"
+  host: "localhost"
+  port: "5432"
