@@ -6,4 +6,5 @@ type PostgresConfig struct {
 	Database string `yaml:"database"`
 	Host     string `yaml:"host"`
 	Port     string `yaml:"port"`
+	SSLMode  string `yaml:"sslMode"`
 }

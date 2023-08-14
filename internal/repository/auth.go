@@ -1,11 +1,16 @@
 package repository
 
-import "fmt"
+import (
+	"fmt"
+	"niltasks-auth/pkg/postgres"
+)
 
-type Repository struct{}
+type Repository struct {
+	pg *postgres.Postgres
+}
 
-func New() *Repository {
-	return &Repository{}
+func New(pg *postgres.Postgres) *Repository {
+	return &Repository{pg: pg}
 }
 
 func (r *Repository) TryAuth() {

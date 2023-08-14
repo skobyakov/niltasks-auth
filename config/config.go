@@ -13,8 +13,8 @@ type ServerConfig struct {
 }
 
 type Config struct {
-	Server ServerConfig          `yaml:"server"`
-	Mongo  config.PostgresConfig `yaml:"postgres"`
+	Server   ServerConfig          `yaml:"server"`
+	Postgres config.PostgresConfig `yaml:"postgres"`
 }
 
 func MustLoad() *Config {
