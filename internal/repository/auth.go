@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"fmt"
+	"niltasks-auth/internal/models"
 	"niltasks-auth/pkg/postgres"
 )
 
@@ -13,6 +13,6 @@ func New(pg *postgres.Postgres) *Repository {
 	return &Repository{pg: pg}
 }
 
-func (r *Repository) TryAuth() {
-	fmt.Println("Hello from auth module!")
+func (r *Repository) TryAuth(req *models.AuthRequest) (string, error) {
+
 }

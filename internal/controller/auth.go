@@ -1,9 +1,14 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+	"niltasks-auth/internal/models"
+
+	"github.com/gin-gonic/gin"
+)
 
 type Service interface {
-	TryAuth()
+	TryAuth(req *models.AuthRequest) (string, error)
 }
 
 type Controller struct {
@@ -15,9 +20,20 @@ func New(s Service) *Controller {
 }
 
 func (c *Controller) HandleLogin(ctx *gin.Context) {
-	c.service.TryAuth()
+	var req models.AuthRequest
 
-	ctx.JSON(200, gin.H{
-		"session_id": "123",
-	})
+	if ctx.ShouldBindJSON(&req) != nil {
+		ctx.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+
+	session, err := c.service.TryAuth(&req)
+	if err != nil {
+		ctx.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+
+	res := models.AuthResponse{Session: session}
+
+	ctx.JSON(200, res)
 }
