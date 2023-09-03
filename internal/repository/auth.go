@@ -14,5 +14,5 @@ func New(pg *postgres.Postgres) *Repository {
 }
 
 func (r *Repository) TryAuth(req *models.AuthRequest) (string, error) {
-
+	return "test-1234", nil
 }
